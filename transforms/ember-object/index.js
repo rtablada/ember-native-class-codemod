@@ -2,23 +2,14 @@ const path = require('path');
 const { getOptions } = require('codemod-cli');
 const { replaceEmberObjectExpressions } = require('../helpers/parse-helper');
 
-module.exports = {
-  getCoercedOptions(keys) {
-    const options = getOptions();
-    Object.keys(options).forEach(key => {
-      if (keys.includes(key)) {
-        options[key] = options.key == 'true';
-      }
-    });
-    return options;
-  },
-};
-
-const DEFAULT_OPTIONS = {
-  decorators: true,
-  classFields: true,
-  classicDecorator: true,
-  quote: 'single',
+function getCoercedOptions(keys) {
+  const options = getOptions();
+  Object.keys(options).forEach(key => {
+    if (keys.includes(key)) {
+      options[key] = options.key == 'true';
+    }
+  });
+  return options;
 };
 
 module.exports = function transformer(file, api) {
