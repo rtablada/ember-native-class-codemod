@@ -2,6 +2,13 @@ const path = require('path');
 const { getOptions } = require('codemod-cli');
 const { replaceEmberObjectExpressions } = require('../helpers/parse-helper');
 
+const DEFAULT_OPTIONS = {
+  decorators: true,
+  classFields: true,
+  classicDecorator: true,
+  quote: 'single',
+};
+
 function getCoercedOptions(keys) {
   const options = getOptions();
   Object.keys(options).forEach(key => {
